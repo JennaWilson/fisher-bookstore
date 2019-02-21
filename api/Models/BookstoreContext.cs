@@ -8,6 +8,7 @@ namespace Fisher.Bookstore.Api.Models
         {
 
         }
+        
 
         public DbSet<Book> Books { get; set; }
     }

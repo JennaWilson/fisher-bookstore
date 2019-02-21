@@ -50,7 +50,7 @@ namespace Fisher.Bookstore.Api.Controllers
             return Ok(db.Books);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetBook")]
         public IActionResult GetBook(int id)
         {
             // try to find the correct book
@@ -64,6 +64,20 @@ namespace Fisher.Bookstore.Api.Controllers
 
             // return the Book inside HTTP 200 OK
             return Ok(book);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Book book)
+        {
+            if (book == null)
+            {
+                return BadRequest();
+            }
+
+            db.Books.Add(book);
+            db.SaveChanges();
+
+            return CreatedAtRoute("GetBook", new { id = book.Id}, book);
         }
     }
 }

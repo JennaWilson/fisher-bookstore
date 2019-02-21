@@ -4,9 +4,9 @@ namespace Fisher.Bookstore.Api
 {
     public class Book 
     {
-        internal int Id;
-        internal string Author;
-        internal string ISBN;
+        public int Id;
+        public string Author;
+        public string ISBN;
 
         public int BookID { get; set; }
 

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Fisher.Bookstore.Api.Data;
-<<<<<<< HEAD
-=======
-using Fisher.Bookstore.Api.Models;
->>>>>>> cb58a8bea40f08ad7829a75d36ddded023cf83b5
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fisher.Bookstore.Api.Controllers

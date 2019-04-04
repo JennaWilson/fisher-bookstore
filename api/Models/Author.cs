@@ -1,4 +1,5 @@
 using System;
+using Fisher.Bookstore.Models;
 
 namespace Fisher.Bookstore.Api
 {

@@ -1,6 +1,3 @@
-using System;
-using Fisher.Bookstore.Models;
-
 namespace Fisher.Bookstore.Api
 {
     public class Author 

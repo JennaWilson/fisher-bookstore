@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using Fisher.Bookstore.Api.Data;
-using Fisher.Bookstore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fisher.Bookstore.Api.Controllers

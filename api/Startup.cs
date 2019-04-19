@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fisher.Bookstore.Api.Data;
+using Fisher.Bookstore.Api.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +32,13 @@ namespace Fisher.Bookstore.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicu", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             services.AddDbContext<BookstoreContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BookstoreConnection")));
            
             // Adding this for identity
@@ -51,8 +59,7 @@ namespace Fisher.Bookstore.Api
                     ValidateLifetime = true,
                     ValidIssuer = Configuration["JWTConfiguration:Issuer"],
                     ValidAudience = Configuration["JWTConfiguration:Audience"],
-                    IssuerSigningKey = new
-                SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWTConfiguration.Key"])
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWTConfiguration.Key"])
                 )
                     };
             });
@@ -64,6 +71,7 @@ namespace Fisher.Bookstore.Api
         {
             //Adding for identity
             app.UseAuthentication();
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
             app.UseMvc();
